@@ -45,6 +45,7 @@ class SitesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def site_params
+      #  use request.original_url.inspect to fill in the url param....
       params.require(:site).permit(:id, :url, :api_key, emails_attributes: [:id, :address])
     end
 end

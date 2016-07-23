@@ -1,24 +1,14 @@
-# README
+# Email Elephant
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Email Elephant is a Rails-backed API for saving emails associated with your website. That is all it is.....
 
-Things you may want to cover:
+Request an API key and post your emails like this:
 
-* Ruby version
+post json:
 
-* System dependencies
+```sh
+{"site": { "url": "mysite.com", "api_key": "12345678", "emails_attributes": [{"address": "dude@example.com"}]}}
+```
+(NB: can really just post: {"email": {"address": "dude@example.com", "api_key": "12345678"}} ) // and get the sending url/ domain in the controller...
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Use a client - yet to be built - to access your emails...
