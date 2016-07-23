@@ -15,12 +15,8 @@ class SitesController < ApplicationController
 
   # POST /sites
   def create
-    puts 'site_params ' + site_params.inspect
     @site = Site.new(site_params)
-
     if @site.save
-      puts ' @site ' + @site.inspect
-      # render json: @site, status: :created, location: @site
       render json: @site, status: :created, location: @site
     else
       render json: @site.errors, status: :unprocessable_entity
@@ -49,6 +45,6 @@ class SitesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def site_params
-      params.require(:site).permit(:url, :api_key, emails_attributes: [:address])
+      params.require(:site).permit(:id, :url, :api_key, emails_attributes: [:id, :address])
     end
 end
