@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   #     resources :emails
   #   end
   # end
-  resources :sites
+  #  couldnt get the serializers to work with the scoped api routes...
+  resources :emails, only: [:create, :show]
 end

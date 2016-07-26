@@ -4,14 +4,12 @@ class User < ApplicationRecord
 
   before_create :generate_api_key
 
-  def self.get_user_from_api_key(plain_text_api_key, url)
-    site = Site.find_by_url(url)
+  def self.find_by_api_key_and_domain(api_key, domain)
+    site = Site.find_by_domain(domain)
     return nil if site.nil?
     user = site.user
-    users_encrypted_key = BCrypt::Password.new(user.encrypted_api_key)
-    users_encrypted_key == plain_text_api_key ? user : nil
+    BCrypt::Password.new(user.encrypted_api_key) == api_key ? user : nil
   end
-
 
   private
   def generate_api_key
