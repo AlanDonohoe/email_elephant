@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160717173027) do
+ActiveRecord::Schema.define(version: 20160725201308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,11 +25,22 @@ ActiveRecord::Schema.define(version: 20160717173027) do
   end
 
   create_table "sites", force: :cascade do |t|
-    t.text     "url"
+    t.string   "domain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["url"], name: "index_sites_on_url", unique: true, using: :btree
+    t.integer  "user_id"
+    t.index ["domain"], name: "index_sites_on_domain", unique: true, using: :btree
+    t.index ["user_id"], name: "index_sites_on_user_id", using: :btree
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "encrypted_api_key"
+    t.string   "email"
+    t.string   "encrypted_password"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_foreign_key "emails", "sites"
+  add_foreign_key "sites", "users"
 end

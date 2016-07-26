@@ -21,6 +21,7 @@ gem 'puma', '~> 3.0'
 # gem 'rack-cors'
 
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'bcrypt'
 
 group :production do
   gem 'rails_12factor'
